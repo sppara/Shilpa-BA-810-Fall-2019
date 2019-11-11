@@ -1,0 +1,17 @@
+{
+  "name": "restwork",
+  "version": "1.0.0",
+  "description": "Rest assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.9"
+  }
+}
