@@ -9,14 +9,14 @@ const mongoose = require('mongoose')
 // Require the database connection
 require('./connection')
 
-// Require the widget database schema
-const widgetSchema = require('./SchemaWidgets')
+// Require the gadget database schema
+const gadgetSchema = require('./SchemaGadgets')
 
-const widgets = mongoose.model('Widget', widgetSchema)
+const gadgets = mongoose.model('Gadget', gadgetSchema)
 
-// GET	Get all widgets
-app.get('/widgets', function (req, res) {
-    widgets.find({}, function (error, result) {
+// GET	Get all gadgets
+app.get('/gadgets', function (req, res) {
+    gadgets.find({}, function (error, result) {
         if (error) {
             // Display the error
             console.log(error)
@@ -34,10 +34,10 @@ app.get('/widgets', function (req, res) {
     })
 })
 
-// GET	Get a widget based on its id
-app.get('/widgets/:id', function (req, res) {
-    let widgetID = req.params.id
-    widgets.findById(widgetID, function (error, result) {
+// GET	Get a gadget based on its id
+app.get('/gadgets/:id', function (req, res) {
+    let gadgetID = req.params.id
+    gadgets.findById(gadgetID, function (error, result) {
         if (error) {
             // Display the error
             console.log(error)
@@ -59,16 +59,16 @@ app.get('/widgets/:id', function (req, res) {
     })
 })
 
-// POST	Create widget
-app.post('/widgets', function (req, res) {
-    let requiredData = ['woo', 'foo']
+// POST	Create gadget
+app.post('/gadgets', function (req, res) {
+    let requiredData = ['Hoo', 'Yoo']
     let errorObject = {}
 
     // Check for missing payload
     for (let i of requiredData) {
         if (!(i in req.body)) {
             errorObject[i] = {
-                type: i == 'woo' ? 'required number ' : 'required string'
+                type: i == 'Hoo' ? 'required number ' : 'required string'
             }
         }
     }
@@ -80,26 +80,26 @@ app.post('/widgets', function (req, res) {
         });
     }
     else {
-        let widgetFoo = req.body.foo
+        let gadgetYoo = req.body.Yoo
 
         // Convert to string to work with match
-        let widgetWoo = String(req.body.woo)
+        let gadgetHoo = String(req.body.Hoo)
 
 
-        if (widgetWoo.match(/\D+/igm)) {
+        if (gadgetHoo.match(/\D+/igm)) {
             res.status(400).json({
                 'status': 'error',
-                'reason': 'Please provide a number in foo field',
+                'reason': 'Please provide a number in Yoo field',
                 'errors': {
-                    woo: {
+                    Hoo: {
                         type: 'required number'
                     }
                 }
             })
         } else {
-            widgets.create({
-                foo: widgetFoo,
-                woo: widgetWoo
+            gadgets.create({
+                Yoo: gadgetYoo,
+                Hoo: gadgetHoo
             }, function (error, result) {
                 console.log(result)
                 if (error) {
@@ -120,11 +120,11 @@ app.post('/widgets', function (req, res) {
     }
 })
 
-// PUT	Update a widget
-app.put('/widgets/:id', function (req, res) {
-    let widgetID = req.params.id
+// PUT	Update a gadget
+app.put('/gadgets/:id', function (req, res) {
+    let gadgetID = req.params.id
     let entryData = req.body
-    let allowedData = ['woo', 'foo']
+    let allowedData = ['Hoo', 'Yoo']
 
     // Trim the payload to remove unwanted data
     for (let i in entryData) {
@@ -136,7 +136,7 @@ app.put('/widgets/:id', function (req, res) {
     console.log('entry', entryData)
 
     // Now find and update
-    widgets.findOneAndUpdate({ _id: widgetID }, entryData, { new: true }, function (error, doc, result) {
+    gadgets.findOneAndUpdate({ _id: gadgetID }, entryData, { new: true }, function (error, doc, result) {
         if (error) {
             // Display the error
             console.log(error)
@@ -159,11 +159,11 @@ app.put('/widgets/:id', function (req, res) {
     })
 
 })
-// DELETE	Delete a widget
-app.delete('/widgets/:id', function (req, res) {
-    let widgetID = req.params.id || false
+// DELETE	Delete a gadget
+app.delete('/gadgets/:id', function (req, res) {
+    let gadgetID = req.params.id || false
 
-    widgets.findOneAndDelete({ _id: widgetID }, function (error, result) {
+    gadgets.findOneAndDelete({ _id: gadgetID }, function (error, result) {
         if (error) {
             // Display the error
             console.log(error)
