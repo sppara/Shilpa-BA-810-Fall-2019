@@ -27,7 +27,6 @@ export class Widgets {
     this.getWidgets()
     this.showForm = false
   }
-
   async attached() {
     await this.getWidgets();
   }
