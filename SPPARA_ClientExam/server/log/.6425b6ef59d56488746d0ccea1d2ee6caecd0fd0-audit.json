@@ -24,6 +24,11 @@
             "date": 1575945726975,
             "name": "log/error-2019-12-10-03.log",
             "hash": "820388ac171998d1d4b6d95b35b7d7c7"
+        },
+        {
+            "date": 1575947021579,
+            "name": "log/error-2019-12-10-04.log",
+            "hash": "b8803079e75eaff2866a40bf1c3bedeb"
         }
     ]
 }

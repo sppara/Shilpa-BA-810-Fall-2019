@@ -21,8 +21,8 @@ export class Widgets {
     this.widget.selectedWidget = widget;
     this.showForm = true;
   }
-
   async saveWidget() {
+    console.log('saving widget')
     await this.widget.saveWidget()
     this.getWidgets()
     this.showForm = false

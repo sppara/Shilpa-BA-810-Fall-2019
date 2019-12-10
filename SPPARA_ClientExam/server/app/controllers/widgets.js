@@ -52,8 +52,7 @@ module.exports = function (app, config) {
     });
 
     router.route('/widgets').post((req, res, next) => {
-
-        console.log(req.body)
+        console.log('posting...')
         logger.log('info', 'Create Widget');
         var widget = new Widget(req.body);
         widget.save()
