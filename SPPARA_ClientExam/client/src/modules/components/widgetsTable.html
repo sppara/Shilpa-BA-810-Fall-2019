@@ -1,0 +1,25 @@
+<template>
+  <button click.trigger="newWidget()" type="submit" class="btn btn-primary my-3">
+    Create Widget
+  </button>
+  <table class="table table-bordered table-condensed table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Widget</th>
+        <th scope="col">Date(Hoo)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="widget of widget.widgetsArray">
+        <td click.delegate="editWidget(widget)" scope="row">${widget.Boo}</td>
+        <td>${widget.Hoo | dateFormat}</td>
+        <td>
+          <button click.trigger="deleteWidget(widget)" type="button" class="btn btn-danger btn-sm">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
