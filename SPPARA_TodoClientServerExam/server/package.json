@@ -1,0 +1,40 @@
+{
+  "name": "first-in-class",
+  "version": "1.0.0",
+  "description": "Demonstrate Express in class",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "author": "Priyanka",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "grunt": "^1.0.4",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-nodemon": "^0.5.4",
+    "grunt-env": "^1.0.1",
+    "jshint": "^2.10.3",
+    "jshint-stylish": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^5.8.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0"
+  }
+}
