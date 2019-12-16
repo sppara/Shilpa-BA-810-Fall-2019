@@ -21,6 +21,10 @@ var TodoSchema = new Schema({
         type: String,
         default: Date.now
     },
+    dateDue: {
+        type: String,
+        default: Date.now
+    },
     status: {
         type: String,
         enum: ['Todo', 'In Process', 'Completed'],

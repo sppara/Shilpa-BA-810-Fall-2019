@@ -57,6 +57,8 @@ module.exports = function (app, config) {
         var todo = new Todo(req.body);
         todo.save()
             .then(result => {
+
+                console.log(result)
                 res.status(201).json(result);
             }).catch((error) => {
                 return next(error);
