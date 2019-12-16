@@ -15,13 +15,7 @@ import {
 
 @inject(Router, User, AuthService)
 export class Home {
-  // constructor(router) {
-  //   this.router = router;
-  // }
 
-  // login() {
-  //   this.router.navigate('users');
-  // }
 
   constructor(router, users, auth) {
     this.users = users;
@@ -88,7 +82,7 @@ export class Home {
         sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
         this.loginError = "";
         this.authenticated = this.auth.isAuthenticated();
-        this.router.navigate('todos');
+        this.router.navigate('courses');
 
         location.reload()
       })

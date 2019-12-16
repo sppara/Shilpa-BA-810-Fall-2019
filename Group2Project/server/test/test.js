@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"),
-    User = require('../app/models/users'),
-    ToDo = require('../app/models/todos');
+    Student = require('../app/models/students'),
+    Course = require('../app/models/courses');
 
 //During the test the env variable is set to test
 process.env.NODE_ENV = 'test';
@@ -32,23 +32,23 @@ it('it should return 404', (done) => {
         });
 });
 
-describe('User', () => {
+describe('Student', () => {
     beforeEach((done) => {
-        User.remove({}, (err) => {
+        Student.remove({}, (err) => {
             done();
         });
     });
 
-    it('it should POST a user', (done) => {
-        var user = {
+    it('it should POST a student', (done) => {
+        var student = {
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "woo@hoo.com",
             "password": "pass"
         }
         chai.request(server)
-            .post('/api/users')
-            .send(user)
+            .post('/api/students')
+            .send(student)
             .end((err, res) => {
                 res.should.have.status(201);
                 res.body.should.have.property('firstName');
@@ -58,31 +58,31 @@ describe('User', () => {
             });
     });
 
-    it('it should not POST a user without email field', (done) => {
-        var user = {
+    it('it should not POST a student without email field', (done) => {
+        var student = {
             "firstName": "Jane",
             "lastName": "Doe",
             "password": "pass"
         }
         chai.request(server)
-            .post('/api/users')
-            .send(user)
+            .post('/api/students')
+            .send(student)
             .end((err, res) => {
                 res.should.have.status(500);
                 done();
             });
     });
 
-    it('it should GET all the users', (done) => {
-        var user = new User({
+    it('it should GET all the students', (done) => {
+        var student = new Student({
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "JaneDoe@hoo.com",
             "password": "pass"
         });
-        user.save((err, user) => {
+        student.save((err, student) => {
             chai.request(server)
-                .get('/api/users')
+                .get('/api/students')
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
@@ -93,18 +93,18 @@ describe('User', () => {
         });
     });
 
-    it('it should GET a user by the given id', (done) => {
-        var user = new User({
+    it('it should GET a student by the given id', (done) => {
+        var student = new Student({
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "JaneDoe@hoo.com",
             "password": "pass"
         });
 
-        user.save((err, user) => {
+        student.save((err, student) => {
             chai.request(server)
-                .get('/api/users/' + user._id)
-                .send(user)
+                .get('/api/students/' + student._id)
+                .send(student)
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -112,27 +112,27 @@ describe('User', () => {
                     res.body.should.have.property('lastName');
                     res.body.should.have.property('email');
                     res.body.should.have.property('password');
-                    res.body.should.have.property('_id').eql(user._id.toString());
+                    res.body.should.have.property('_id').eql(student._id.toString());
                     done();
                 });
         });
 
     });
 
-    it('it should UPDATE a user', (done) => {
+    it('it should UPDATE a student', (done) => {
 
-        var user = new User({
+        var student = new Student({
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "yoo@hoo.com",
             "password": "pass"
         });
 
-        user.save((err, user) => {
+        student.save((err, student) => {
             chai.request(server)
-                .put('/api/users/' + user._id)
+                .put('/api/students/' + student._id)
                 .send({
-                    "_id": user._id,
+                    "_id": student._id,
                     "firstName": "Joey",
                     "lastName": "Doe",
                     "email": "yoo@hoo.edu",
@@ -147,16 +147,16 @@ describe('User', () => {
         });
     });
 
-    it('it should DELETE a user given the id', (done) => {
-        var user = new User({
+    it('it should DELETE a student given the id', (done) => {
+        var student = new Student({
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "five@hoo.com",
             "password": "pass"
         });
-        user.save((err, user) => {
+        student.save((err, student) => {
             chai.request(server)
-                .delete('/api/users/' + user.id)
+                .delete('/api/students/' + student.id)
                 .end((err, res) => {
                     res.should.have.status(200);
                     done();
@@ -164,41 +164,41 @@ describe('User', () => {
         });
     });
 
-    // Create and save user ID 
-    var USER_ID;
+    // Create and save student ID 
+    var STUDENT_ID;
 
-    describe('ToDo', () => {
+    describe('Course', () => {
         beforeEach((done) => {
-            ToDo.remove({}, (err) => {
+            Course.remove({}, (err) => {
                 done();
             });
         });
 
-        var user = new User({
+        var student = new Student({
             "firstName": "Jane",
             "lastName": "Doe",
             "email": "JaneDoe@hoo.com",
             "password": "pass"
         });
         
-        user.save((err, user) => {
-            USER_ID = user._id;
+        student.save((err, student) => {
+            STUDENT_ID = student._id;
         });
 
         //Insert tests here
-        it('it should POST a todo', (done) => {
-            var todo = {
-                "userId": USER_ID,
-                "todo": "This is my ToDo"
+        it('it should POST a course', (done) => {
+            var course = {
+                "studentId": STUDENT_ID,
+                "course": "This is my Course"
             }
             chai.request(server)
-                .post('/api/todos')
-                .send(todo)
+                .post('/api/courses')
+                .send(course)
                 .end((err, res) => {
                     res.should.have.status(201);
-                    res.body.should.have.property('todo');
-                    res.body.todo.should.be.a('string');
-                    res.body.todo.should.equal('This is my ToDo');
+                    res.body.should.have.property('course');
+                    res.body.course.should.be.a('string');
+                    res.body.course.should.equal('This is my Course');
                     done();
                 });
         });

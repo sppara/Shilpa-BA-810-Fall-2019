@@ -2,7 +2,7 @@ var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 const Bcrypt = require('bcryptjs');
 
-var UserSchema = new Schema({
+var StudentSchema = new Schema({
     firstName: {
         type: String,
         required: true
@@ -31,7 +31,7 @@ var UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('save', function (next) {
+StudentSchema.pre('save', function (next) {
     var person = this;
     if (this.isModified('password') || this.isNew) {
         Bcrypt.genSalt(10, function (err, salt) {
@@ -51,7 +51,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-UserSchema.methods.comparePassword = function (passw, cb) {
+StudentSchema.methods.comparePassword = function (passw, cb) {
     Bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
             return cb(err);
@@ -61,4 +61,4 @@ UserSchema.methods.comparePassword = function (passw, cb) {
 };
 
 module.exports =
-    Mongoose.model('User', UserSchema);
+    Mongoose.model('Student', StudentSchema);

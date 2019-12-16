@@ -10,7 +10,7 @@ export class User {
 
   constructor(data) {
     this.data = data;
-    this.USER_SERVICE = 'users';
+    this.USER_SERVICE = 'students';
   }
 
   async saveUser(user) {

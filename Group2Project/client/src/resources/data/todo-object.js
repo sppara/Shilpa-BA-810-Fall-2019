@@ -9,7 +9,7 @@ import {
 export class Todo {
   constructor(data) {
     this.data = data;
-    this.TODO_SERVICE = 'todos';
+    this.TODO_SERVICE = 'courses';
   }
 
   newTodo(id) {

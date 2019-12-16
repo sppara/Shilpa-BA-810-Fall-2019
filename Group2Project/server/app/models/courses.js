@@ -1,7 +1,7 @@
 var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
-var TodoSchema = new Schema({
+var CourseSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         required: true
@@ -37,4 +37,4 @@ var TodoSchema = new Schema({
 });
 
 module.exports =
-    Mongoose.model('Todo', TodoSchema);
+    Mongoose.model('Course', CourseSchema);

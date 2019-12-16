@@ -1,6 +1,6 @@
 let authConfig = {
   baseUrl: "http://localhost:5000/api",
-  loginUrl: '/users/login',
+  loginUrl: '/students/login',
   tokenName: 'token',
   authHeader: 'Authorization',
   authToken: '',

@@ -9,14 +9,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a show.bind="authenticated" class="nav-link" id="class-status" href="#todos">Class Status</a>
+            <a show.bind="authenticated" class="nav-link" id="class-status" href="#courses">Class Status</a>
           </li>
           <li class="nav-item">
               <a show.bind="authenticated" class="nav-link" id="grades" href="#grades">Grades</a>
             </li>
-          <li class="nav-item">
-            <a show.bind="!authenticated" class="nav-link navigate" href="#service">Services</a>
-          </li>
           <li show.bind="!authenticated" class="nav-item">
             <a class="nav-link navigate" href="#login">Login</a>
           </li>
@@ -24,7 +21,7 @@
             <a class="nav-link navigate" href="#login">Register</a>
           </li>
           <li show.bind="authenticated" class="nav-item">
-            <a class="nav-link" href="#todos" click.trigger="logout()">Logout</a>
+            <a class="nav-link" href="#courses" click.trigger="logout()">Logout</a>
           </li>
         </ul>
       </div>

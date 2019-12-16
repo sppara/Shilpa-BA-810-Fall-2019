@@ -4,16 +4,16 @@ var express = require('express'),
         router = express.Router(),
         logger = require('../../config/logger'),
         mongoose = require('mongoose'),
-        Todo = mongoose.model('Todo'),
+        Course = mongoose.model('Course'),
         multer = require('multer'),
         mkdirp = require('mkdirp')
 
 module.exports = function (app, config) {
     app.use('/api', router);
 
-    router.route('/todos').get(function (req, res, next) {
-        logger.log('info', 'Get all todos');
-        var query = Todo.find()
+    router.route('/courses').get(function (req, res, next) {
+        logger.log('info', 'Get all courses');
+        var query = Course.find()
             .sort(req.query.order)
             .exec()
             .then(result => {
@@ -21,7 +21,7 @@ module.exports = function (app, config) {
                     res.status(200).json(result);
                 } else {
                     res.status(404).json({
-                        message: "No todos"
+                        message: "No courses"
                     });
                 }
             })
@@ -31,9 +31,9 @@ module.exports = function (app, config) {
     });
 
 
-    router.route('/todos/user/:id').get(function (req, res, next) {
-        logger.log('info', 'Get all a users todos');
-        var query = Todo.find({
+    router.route('/courses/user/:id').get(function (req, res, next) {
+        logger.log('info', 'Get all a users courses');
+        var query = Course.find({
                 userId: req.params.id
             })
             .sort(req.query.order)
@@ -43,7 +43,7 @@ module.exports = function (app, config) {
                     res.status(200).json(result);
                 } else {
                     res.status(404).json({
-                        message: "No todos"
+                        message: "No courses"
                     });
                 }
             })
@@ -52,29 +52,27 @@ module.exports = function (app, config) {
             });
     });
 
-    router.route('/todos').post((req, res, next) => {
-        logger.log('info', 'Create Todo');
-        var todo = new Todo(req.body);
-        todo.save()
+    router.route('/courses').post((req, res, next) => {
+        logger.log('info', 'Create Course');
+        var course = new Course(req.body);
+        course.save()
             .then(result => {
-
-                console.log(result)
                 res.status(201).json(result);
             }).catch((error) => {
                 return next(error);
             });
     });
 
-    router.route('/todos/:id').put((req, res, next) => {
-        logger.log('info', 'Get todo %s', req.params.id);
-        Todo.findOneAndUpdate({
+    router.route('/courses/:id').put((req, res, next) => {
+        logger.log('info', 'Get course %s', req.params.id);
+        Course.findOneAndUpdate({
                 _id: req.params.id
             }, req.body, {
                 new: true,
                 multi: false
             })
-            .then(todo => {
-                res.status(200).json(todo);
+            .then(course => {
+                res.status(200).json(course);
             })
             .catch(error => {
                 return next(error);
@@ -82,14 +80,14 @@ module.exports = function (app, config) {
     });
 
 
-    router.route('/todos/:id').delete((req, res, next) => {
-        logger.log('info', 'Delete todo %s', req.params.id);
-        Todo.remove({
+    router.route('/courses/:id').delete((req, res, next) => {
+        logger.log('info', 'Delete course %s', req.params.id);
+        Course.remove({
                 _id: req.params.id
             })
-            .then(todo => {
+            .then(course => {
                 res.status(200).json({
-                    msg: "Todo Deleted"
+                    msg: "Course Deleted"
                 });
             })
             .catch(error => {

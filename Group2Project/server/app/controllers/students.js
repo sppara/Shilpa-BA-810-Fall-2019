@@ -4,7 +4,7 @@ const express = require('express'),
         router = express.Router(),
         logger = require('../../config/logger'),
         mongoose = require('mongoose'),
-        User = mongoose.model('User'),
+        Student = mongoose.model('Student'),
         passportService = require('../../config/passport'),
         passport = require('passport');
 
@@ -18,9 +18,9 @@ const requireAuth = passport.authenticate('jwt', {
 module.exports = function (app, config) {
     app.use('/api', router);
 
-    router.route('/users').get(requireAuth, function (req, res, next) {
-        logger.log('info', 'Get all users');
-        var query = User.find()
+    router.route('/students').get(requireAuth, function (req, res, next) {
+        logger.log('info', 'Get all students');
+        var query = Student.find()
             .sort(req.query.order)
             .exec()
             .then(result => {
@@ -28,7 +28,7 @@ module.exports = function (app, config) {
                     res.status(200).json(result);
                 } else {
                     res.status(404).json({
-                        message: "No users"
+                        message: "No students"
                     });
                 }
             })
@@ -36,10 +36,10 @@ module.exports = function (app, config) {
                 return next(error);
             });
     });
-    router.route('/users').post((req, res, next) => {
-        logger.log('info', 'Create User');
-        var user = new User(req.body);
-        user.save()
+    router.route('/students').post((req, res, next) => {
+        logger.log('info', 'Create Student');
+        var student = new Student(req.body);
+        student.save()
             .then(result => {
                 res.status(201).json(result);
             }).catch((err) => {
@@ -47,17 +47,17 @@ module.exports = function (app, config) {
             });
     });
 
-    router.route('/users/login').post(requireLogin, login);
+    router.route('/students/login').post(requireLogin, login);
 
-    router.route('/users/:id').get(requireAuth, (req, res, next) => {
-        logger.log('info', 'Get user %s', req.params.id);
-        User.findById(req.params.id)
-            .then(user => {
-                if (user) {
-                    res.status(200).json(user);
+    router.route('/students/:id').get(requireAuth, (req, res, next) => {
+        logger.log('info', 'Get student %s', req.params.id);
+        Student.findById(req.params.id)
+            .then(student => {
+                if (student) {
+                    res.status(200).json(student);
                 } else {
                     res.status(404).json({
-                        message: "No user found"
+                        message: "No student found"
                     });
                 }
             })
@@ -65,34 +65,34 @@ module.exports = function (app, config) {
                 return next(error);
             });
     });
-    router.route('/users/:id').put(requireAuth, (req, res, next) => {
-        logger.log('info', 'Get user %s', req.params.id);
-        User.findOneAndUpdate({
+    router.route('/students/:id').put(requireAuth, (req, res, next) => {
+        logger.log('info', 'Get student %s', req.params.id);
+        Student.findOneAndUpdate({
                 _id: req.params.id
             }, req.body, {
                 new: true,
                 multi: false
             })
-            .then(user => {
-                res.status(200).json(user);
+            .then(student => {
+                res.status(200).json(student);
             })
             .catch(error => {
                 return next(error);
             });
     });
 
-    router.put('/users/password/:id', function (req, res, next) {
-        logger.log('info', 'Update user ' + req.params.id);
+    router.put('/students/password/:id', function (req, res, next) {
+        logger.log('info', 'Update student ' + req.params.id);
 
-        User.findById(req.params.id)
+        Student.findById(req.params.id)
             .exec()
-            .then(function (user) {
+            .then(function (student) {
                 if (req.body.password !== undefined) {
-                    user.password = req.body.password;
+                    student.password = req.body.password;
                 }
-                user.save()
-                    .then(function (user) {
-                        res.status(200).json(user);
+                student.save()
+                    .then(function (student) {
+                        res.status(200).json(student);
                     })
                     .catch(function (err) {
                         return next(err);
@@ -103,14 +103,14 @@ module.exports = function (app, config) {
             });
     });
 
-    router.route('/users/:id').delete(requireAuth, (req, res, next) => {
-        logger.log('info', 'Delete user %s', req.params.id);
-        User.remove({
+    router.route('/students/:id').delete(requireAuth, (req, res, next) => {
+        logger.log('info', 'Delete student %s', req.params.id);
+        Student.remove({
                 _id: req.params.id
             })
-            .then(user => {
+            .then(student => {
                 res.status(200).json({
-                    msg: "User Deleted"
+                    msg: "Student Deleted"
                 });
             })
             .catch(error => {
