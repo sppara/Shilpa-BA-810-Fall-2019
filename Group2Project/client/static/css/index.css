@@ -1,0 +1,63 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background: url('/static/img/header-bgr.png') no-repeat top left;
+  background-size: 100% 40vw;
+  padding: 1vw 13vw;
+}
+
+.lead-text {
+  color: #5b6d7f;
+  font-size: 43px;
+  font-weight: 500;
+}
+
+.some-texts {
+  color: #959ea9;
+  line-height: 2;
+}
+
+#home {
+  height: calc(35vw - 120px);
+}
+
+.each-section {
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+}
+
+.started-button {
+  background-color: #1c45b0;
+  color: #fff !important;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border-color: transparent;
+  cursor: pointer;
+  padding: 9px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.navs,
+.navs * {
+  color: #828d98 !important;
+  font-size: 14px;
+}
+
+.navs ul {
+  padding: 0;
+  margin: 0;
+}
+
+.cardings {
+  padding-top: 2rem;
+  color:  #8e98a2;
+  border-color: transparent;
+  box-shadow: 0 0 2px rgba(0,0,0,.4);
+}
+
+.cardings .card-title {
+  color: #496b7f;
+}
+
+.table-cardings {
+  background-color: rgba(255, 255, 255, .7);
+}

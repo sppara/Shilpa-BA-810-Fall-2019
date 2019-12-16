@@ -1,0 +1,33 @@
+<template>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navs">
+      <a class="navbar-brand" href="#">Our App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a show.bind="authenticated" class="nav-link" id="class-status" href="#todos">Class Status</a>
+          </li>
+          <li class="nav-item">
+              <a show.bind="authenticated" class="nav-link" id="grades" href="#grades">Grades</a>
+            </li>
+          <li class="nav-item">
+            <a show.bind="!authenticated" class="nav-link navigate" href="#service">Services</a>
+          </li>
+          <li show.bind="!authenticated" class="nav-item">
+            <a class="nav-link navigate" href="#login">Login</a>
+          </li>
+          <li show.bind="!authenticated" class="nav-item">
+            <a class="nav-link navigate" href="#login">Register</a>
+          </li>
+          <li show.bind="authenticated" class="nav-item">
+            <a class="nav-link" href="#todos" click.trigger="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</template>

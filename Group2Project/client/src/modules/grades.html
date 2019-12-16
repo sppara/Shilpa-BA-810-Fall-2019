@@ -1,0 +1,40 @@
+<template>
+  <div class="container" style="margin-top:75px;">
+    <div class="col-md-9 mx-auto">
+      <button click.trigger="newTodo()" type="submit" class="btn started-button my-3">
+        Create Todo
+      </button>
+      <div class="card table-cardings">
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Todo</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Status</th>
+              <th scope="col">Date Due</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr repeat.for="todo of todo.todosArray | filterTodosCompleted">
+              <td click.delegate="editTodo(todo)" scope="row">${todo.todo}</td>
+              <td scope="row">${todo.grade}</td>
+              <td>
+                <select change.delegate="updateTodo(todo)" value.bind="todo.status" class="form-control"
+                  id="todoStatus">
+                  <option repeat.for="status of statuses" value.bind="status">${status}</option>
+                </select>
+              </td>
+              <td>${todo.dateDue | dateFormat}</td>
+              <td>
+                <button click.trigger="deleteTodo(todo)" type="button" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
