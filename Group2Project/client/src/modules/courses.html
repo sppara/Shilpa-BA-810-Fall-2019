@@ -1,0 +1,8 @@
+<template>
+  <div class="container" style="margin-top:75px;">
+    <div class="col-md-9 mx-auto">
+      <compose show.bind="showForm" view="./components/coursesForm.html"></compose>
+      <compose show.bind="!showForm" view="./components/coursesTable.html"></compose>
+    </div>
+  </div>
+</template>

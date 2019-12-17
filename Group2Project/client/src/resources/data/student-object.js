@@ -6,16 +6,16 @@ import {
 } from './data-services';
 
 @inject(DataServices)
-export class User {
+export class Student {
 
   constructor(data) {
     this.data = data;
-    this.USER_SERVICE = 'students';
+    this.STUDENTS_SERVICE = 'students';
   }
 
-  async saveUser(user) {
-    if (user) {
-      let serverResponse = await this.data.post(user, this.USER_SERVICE);
+  async saveStudents(students) {
+    if (students) {
+      let serverResponse = await this.data.post(students, this.STUDENTS_SERVICE);
       return serverResponse;
     }
   }

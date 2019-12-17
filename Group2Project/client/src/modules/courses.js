@@ -11,7 +11,8 @@ export class Courses {
   constructor(course) {
     this.course = course;
     this.studentObj = JSON.parse(sessionStorage.getItem('studentObj'));
-    this.statuses = ['Course', 'In Process', 'Completed'];
+    this.statuses = ['Todo', 'In Process', 'Completed'];
+    this.isCheckedCompleted = true;
   }
 
   async attached() {
@@ -43,8 +44,8 @@ export class Courses {
     this.getCourses();
   }
 
-  async deleteCourse(wigdet) {
-    await this.course.deleteCourse(wigdet._id)
+  async deleteCourse(course) {
+    await this.course.deleteCourse(course._id)
     this.getCourses();
   }
 

@@ -1,0 +1,32 @@
+<template>
+  <form>
+    <div class="form-group">
+      <label for="courseInput">Course</label>
+      <input value.bind="course.selectedCourse.course" type="text" class="form-control" id="courseInput" placeholder="Course">
+    </div>
+    <div class="form-group">
+      <label for="courseInput">Course Detail</label>
+      <textarea value.bind="course.selectedCourse.detail" class="form-control" id="courseDetail" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="courseInput">Grade</label>
+      <input type="text" placeholder="Grade" value.bind="course.selectedCourse.grade" class="form-control" id="courseGrade" rows="5" />
+    </div>
+    <div class="form-group">
+      <label for="courseStatus">Status</label>
+      <select value.bind="course.selectedCourse.status" class="form-control" id="courseStatus">
+        <option repeat.for="status of statuses" model.bind="status">${status}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="courseStatus">Due Date</label>
+      <flat-picker controlid="startDate" value.bind="course.selectedCourse.dateDue"></flat-picker>
+    </div>
+    <button click.trigger="saveCourse()" type="submit" class="btn started-button">
+      Save
+    </button>
+    <button click.trigger="Cancel()" type="submit" class="btn btn-default">
+      Cancel
+    </button>
+  </form>
+</template>

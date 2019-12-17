@@ -30,8 +30,8 @@ export class NavBar {
   login() {
     return this.auth.login(this.email, this.password)
       .then(response => {
-        this.userObj = response.user;
-        sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
+        this.studentObj = response.user;
+        sessionStorage.setItem('studentObj', JSON.stringify(this.studentObj));
         this.loginError = "";
         this.authenticated = this.auth.isAuthenticated();
         this.router.navigate('home');
@@ -49,7 +49,7 @@ export class NavBar {
 
   logout() {
     this.auth.logout();
-    sessionStorage.removeItem('userObj');
+    sessionStorage.removeItem('studentObj');
     this.authenticated = this.auth.isAuthenticated();
 
     // location.href = '/#home'

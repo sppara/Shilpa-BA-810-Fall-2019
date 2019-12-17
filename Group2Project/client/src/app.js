@@ -17,13 +17,13 @@ export class App {
       {
         route: 'students',
         name: 'students',
-        moduleId: 'modules/users',
+        moduleId: 'modules/students',
         title: 'Students'
       },
       {
         route: 'courses',
         name: 'courses',
-        moduleId: 'modules/todos',
+        moduleId: 'modules/courses',
         title: 'Courses',
         auth: true
       },

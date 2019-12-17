@@ -2,11 +2,11 @@ var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 
 var CourseSchema = new Schema({
-    userId: {
+    studentId: {
         type: Schema.Types.ObjectId,
         required: true
     },
-    todo: {
+    course: {
         type: String,
         required: true
     },

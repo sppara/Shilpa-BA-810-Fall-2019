@@ -31,10 +31,10 @@ module.exports = function (app, config) {
     });
 
 
-    router.route('/courses/user/:id').get(function (req, res, next) {
+    router.route('/courses/student/:id').get(function (req, res, next) {
         logger.log('info', 'Get all a users courses');
         var query = Course.find({
-                userId: req.params.id
+                studentId: req.params.id
             })
             .sort(req.query.order)
             .exec()

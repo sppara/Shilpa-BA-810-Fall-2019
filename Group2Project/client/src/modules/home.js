@@ -6,19 +6,19 @@ import {
 } from 'aurelia-router';
 
 import {
-  User
-} from '../resources/data/user-object';
+  Student
+} from '../resources/data/student-object';
 
 import {
   AuthService
 } from 'aurelia-auth';
 
-@inject(Router, User, AuthService)
+@inject(Router, Student, AuthService)
 export class Home {
 
 
-  constructor(router, users, auth) {
-    this.users = users;
+  constructor(router, students, auth) {
+    this.students = students;
     this.message = 'Home';
 
     this.authenticated = false;
@@ -31,21 +31,21 @@ export class Home {
     // this.message = 'Register an Account';
   }
 
-  newUser() {
-    this.user = {
+  newStudents() {
+    this.students = {
       firstName: '',
       lastName: '',
       active: true,
-      role: 'user',
+      role: 'students',
       email: '',
       password: ''
     }
   }
 
   async save() {
-    if (this.user && this.user.firstName && this.user.lastName &&
-      this.user.email && this.user.password) {
-      await this.users.saveUser(this.user);
+    if (this.students && this.students.firstName && this.students.lastName &&
+      this.students.email && this.students.password) {
+      await this.students.saveStudents(this.students);
 
       this.router.navigate('home')
     }
@@ -78,8 +78,9 @@ export class Home {
   login() {
     return this.auth.login(this.email, this.password)
       .then(response => {
-        this.userObj = response.user;
-        sessionStorage.setItem('userObj', JSON.stringify(this.userObj));
+        console.log(response)
+        this.studentObj = response.user;
+        sessionStorage.setItem('studentObj', JSON.stringify(this.studentObj));
         this.loginError = "";
         this.authenticated = this.auth.isAuthenticated();
         this.router.navigate('courses');

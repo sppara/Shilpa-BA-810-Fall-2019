@@ -1,14 +1,14 @@
 <template>
   <div class="container" style="margin-top:75px;">
     <div class="col-md-9 mx-auto">
-      <button click.trigger="newTodo()" type="submit" class="btn started-button my-3">
-        Create Todo
+      <button click.trigger="newCourse()" type="submit" class="btn started-button my-3">
+        Create Course
       </button>
       <div class="card table-cardings">
         <table class="table table-condensed table-striped">
           <thead>
             <tr>
-              <th scope="col">Todo</th>
+              <th scope="col">Course</th>
               <th scope="col">Grade</th>
               <th scope="col">Status</th>
               <th scope="col">Date Due</th>
@@ -16,18 +16,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr repeat.for="todo of todo.todosArray | filterTodosCompleted">
-              <td click.delegate="editTodo(todo)" scope="row">${todo.todo}</td>
-              <td scope="row">${todo.grade}</td>
+            <tr repeat.for="course of course.coursesArray | filterCoursesCompleted">
+              <td click.delegate="editCourse(course)" scope="row">${course.course}</td>
+              <td scope="row">${course.grade}</td>
               <td>
-                <select change.delegate="updateTodo(todo)" value.bind="todo.status" class="form-control"
-                  id="todoStatus">
+                <select change.delegate="updateCourse(course)" value.bind="course.status" class="form-control"
+                  id="courseStatus">
                   <option repeat.for="status of statuses" value.bind="status">${status}</option>
                 </select>
               </td>
-              <td>${todo.dateDue | dateFormat}</td>
+              <td>${course.dateDue | dateFormat}</td>
               <td>
-                <button click.trigger="deleteTodo(todo)" type="button" class="btn btn-danger btn-sm">
+                <button click.trigger="deleteCourse(course)" type="button" class="btn btn-danger btn-sm">
                   Delete
                 </button>
               </td>

@@ -42,24 +42,24 @@
             <form>
               <div class="form-group">
                 <label for="exampleInputFirstName1">First Name</label>
-                <input value.bind="user.firstName" type="text" class="form-control" id="exampleInputFirstName1"
+                <input value.bind="students.firstName" type="text" class="form-control" id="exampleInputFirstName1"
                   aria-describedby="FirstNameHelp" placeholder="Enter First Name">
               </div>
               <div class="form-group">
                 <label for="exampleInputLastName1">Last Name</label>
-                <input value.bind="user.lastName" type="text" class="form-control" id="exampleInputLastName1"
+                <input value.bind="students.lastName" type="text" class="form-control" id="exampleInputLastName1"
                   aria-describedby="LastNameHelp" placeholder="Enter Last Name">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input value.bind="user.email" type="email" class="form-control" id="exampleInputEmail1"
+                <input value.bind="students.email" type="email" class="form-control" id="exampleInputEmail1"
                   aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                   else.</small>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input value.bind="user.password" type="password" class="form-control" id="exampleInputPassword1"
+                <input value.bind="students.password" type="password" class="form-control" id="exampleInputPassword1"
                   placeholder="Password">
               </div>
               <button click.trigger="save()" type="submit" class="btn started-button">Register</button>
@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div show.bind="authenticated" text-center class="row each-section text-center" id="toToDo">
+    <div show.bind="authenticated" text-center class="row each-section text-center" id="toCourse">
       <a class="btn started-button mx-auto" href="#courses">Goto Courses</a>
     </div>
   </div>
